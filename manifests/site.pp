@@ -59,14 +59,14 @@ node 'master.puppet'{
     
   nginx::resource::server { 'dynamic':
     listen_port => 25565,
-    proxy => 'http://192.168.50.12:25565,
+    proxy => 'http://192.168.50.12:25565',
     }
     
-  #exec { 'selinux_to_permissive':
-  #  command => 'setenforce 0',
-  #  path => [ '/usr/bin', '/bin', '/usr/sbin' ],
-  #  user => 'root',
-  #  }
+  exec { 'selinux_to_permissive':
+    command => 'setenforce 0',
+    path => [ '/usr/bin', '/bin', '/usr/sbin' ],
+    user => 'root',
+    }
   
   exec { 'reboot_nginx':
     command => 'systemctl restart nginx',
