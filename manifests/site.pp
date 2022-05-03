@@ -56,9 +56,17 @@ node 'master.puppet'{
     listen_port => 9081,
     proxy => 'http://192.168.50.11:80',
     }
-
-  service { 'nginx':
-    ensure => 'running',
-    } 
+    
+  exec { 'selinux_to_permissive':
+    command     => 'setenforce 0',
+    path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+    user       => 'root',
+    }
+  
+  exec { 'reboot_nginx':
+    command     => 'systemctl restart nginx',
+    path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+    user => 'root',
+    }
 
 }
