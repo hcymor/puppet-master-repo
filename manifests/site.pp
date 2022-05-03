@@ -62,22 +62,21 @@ node 'master.puppet'{
     proxy => 'http://192.168.50.12:25565,
     }
     
-  exec { 'selinux_to_permissive':
-    command     => 'setenforce 0',
-    path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
-    user       => 'root',
-    }
+  #exec { 'selinux_to_permissive':
+  #  command => 'setenforce 0',
+  #  path => [ '/usr/bin', '/bin', '/usr/sbin' ],
+  #  user => 'root',
+  #  }
   
   exec { 'reboot_nginx':
-    command     => 'systemctl restart nginx',
-    path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
+    command => 'systemctl restart nginx',
+    path => [ '/usr/bin', '/bin', '/usr/sbin' ],
     user => 'root',
     }
-
 }
 
 node 'mineserver.puppet'{
-
+    
   package {'java-17-openjdk':
     ensure => installed
     }
