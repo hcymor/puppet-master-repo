@@ -42,3 +42,28 @@ node slave2.puppet{
     ensure => 'running',
     }
   }
+
+node master.puppet{
+
+  include nginx
+
+  package { 'nginx':
+    ensure => installed,
+    name => nginx,
+    }
+  
+  nginx::resource::server { 'slave1':
+    listen_port => 9080,
+    proxy => 'http://192.168.50.10:80',
+    }
+
+  nginx::resource::server { 'slave2':
+    listen_port => 9081,
+    proxy => 'http://192.168.50.11:80',
+    }
+  
+  service { 'nginx':
+    ensure => 'running',
+    } 
+    
+  }
