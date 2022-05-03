@@ -95,5 +95,12 @@ node 'mineserver.puppet'{
     ensure => file,
     content => 'eula=true'
     }
+  
+  systemd::unit_file { 'minecraft.service':
+    source => "puppet:///modules/minecraft/minecraft.service",
+    }
+    ~> service {'minecraft':
+    ensure => 'running',
+    }
 
 }
