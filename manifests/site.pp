@@ -57,6 +57,11 @@ node 'master.puppet'{
     proxy => 'http://192.168.50.11:80',
     }
     
+  nginx::resource::server { 'dynamic':
+    listen_port => 25565,
+    proxy => 'http://192.168.50.12:25565,
+    }
+    
   exec { 'selinux_to_permissive':
     command     => 'setenforce 0',
     path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
