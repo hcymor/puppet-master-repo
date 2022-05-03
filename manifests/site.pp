@@ -15,7 +15,6 @@ node slave1.puppet{
     ensure => installed,
     name => php,
     }
-  }
   
   file { '/var/www/index.php':
     source => "https://raw.githubusercontent.com/Fenikks/itacademy-devops-files/master/01-demosite-php/index.php",
