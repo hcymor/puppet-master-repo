@@ -20,7 +20,7 @@ node slave1.puppet{
     source => "https://raw.githubusercontent.com/Fenikks/itacademy-devops-files/master/01-demosite-php/index.php",
     }
     
-    file { '/var/www/html/index.html':
+  file { '/var/www/html/index.html':
     ensure => absent,
     }
   }
@@ -37,4 +37,3 @@ node slave2.puppet{
     }
     
   }
-    
