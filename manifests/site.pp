@@ -45,28 +45,20 @@ node slave2.puppet{
 
 node 'master.puppet'{
 
-include nginx
+  include nginx
 
-nginx::resource::server { 'static':
-  listen_port => 9080,
-  proxy => 'http://192.168.50.10:80',
-  }
+  nginx::resource::server { 'static':
+    listen_port => 9080,
+    proxy => 'http://192.168.50.10:80',
+    }
 
-nginx::resource::server { 'dynamic':
-  listen_port => 9081,
-  proxy => 'http://192.168.50.11:80',
-  }
+  nginx::resource::server { 'dynamic':
+    listen_port => 9081,
+    proxy => 'http://192.168.50.11:80',
+    }
 
+  service { 'nginx':
+    ensure => 'running',
+    } 
 
-exec { 'selinux_to_permissive':
-  command     => 'setenforce 0',
-  path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
-  user       => 'root',
-  }
-
-exec { 'reboot_nginx':
-  command     => 'systemctl restart nginx',
-  path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
-  user => 'root',
-  }
 }
