@@ -8,7 +8,6 @@ node slave1.puppet{
   package { 'httpd':
     ensure => installed,
     name => httpd,
-    enable => true,
     }
   
   package { 'php':
@@ -29,7 +28,6 @@ node slave2.puppet{
   package { 'httpd':
     ensure => installed,
     name => httpd,
-    enable => true,
     }
   
   file { '/var/www/html/index.html':
