@@ -29,6 +29,7 @@ node slave2.puppet{
   package { 'httpd':
     ensure => installed,
     name => httpd,
+    enable => true,
     }
   
   file { '/var/www/index.html':
