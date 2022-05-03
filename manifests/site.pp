@@ -22,6 +22,10 @@ node slave1.puppet{
   file { '/var/www/html/index.html':
     ensure => absent,
     }
+    
+  service { 'httpd':
+    ensure => 'running',
+    }
   }
   
 node slave2.puppet{
@@ -34,4 +38,7 @@ node slave2.puppet{
     source => "https://raw.githubusercontent.com/Fenikks/itacademy-devops-files/master/01-demosite-static/index.html",
     }
     
+  service { 'httpd':
+    ensure => 'running',
+    }
   }
